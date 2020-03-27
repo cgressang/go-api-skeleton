@@ -1,0 +1,13 @@
+log:
+  debug: true
+
+database:
+  user: user
+  password: password
+  net: tcp
+  host: mysql
+  port: 3306
+  dbname: example
+
+server:
+  port: :8080

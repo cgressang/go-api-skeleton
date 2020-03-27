@@ -1,0 +1,29 @@
+version: "3.5"
+
+services:
+  app:
+    image: go-api-skeleton
+    container_name: go_api_skeleton
+    depends_on:
+      - mysql
+    volumes:
+      - .:/go/src/github.com/cgressang/go-api-skeleton
+    environment:
+      ENV: development
+    working_dir: /go/src/github.com/cgressang/go-api-skeleton
+    ports:
+      - 8080:8080
+    command: bash -c "go mod download && make serve"
+  mysql:
+    image: mysql:5.7
+    hostname: mysql
+    container_name: mysql
+    ports:
+      - 3306:3306
+    volumes:
+      - ./data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: skeleton
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: root
